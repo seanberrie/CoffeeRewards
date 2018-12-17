@@ -10,8 +10,10 @@ const MongoDBStore = require('connect-mongodb-session')(session)
 const passport = require('passport')
 const passportConfig = require('./services/auth')
 const adminRouter = require('./routes/admin.js')
+const storeRouter = require('./routers/storeRouter')
 const methodOverride = require('method-override')
 const path = require('path')
+const bodyParser = require('body-parser')
 
 // environment port
 const port = process.env.PORT || 3000
@@ -35,6 +37,8 @@ app.use(cookieParser()) // interpret cookies that are attached to requests
 app.use(express.urlencoded({ extended: true })) // interpret standard form data in requests
 app.use(flash()) // set and reset flash messages
 app.use(methodOverride('_method'))
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // ejs configuration
 app.set('view engine', 'ejs')
@@ -63,6 +67,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/', adminRouter)
+app.use('/store', storeRouter)
 
 app.listen(port, (err) => {
   console.log(err || 'Server running on port ' + port)

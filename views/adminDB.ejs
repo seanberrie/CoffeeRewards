@@ -10,18 +10,18 @@
 </div>
 <div class="flex-row d-flex justify-content-between">
     <div class="col-6 justify-content-start">
-        <form class="d-flex flex-column align-items-center justify-content-center signup">
+        <form class="d-flex flex-column align-items-center justify-content-center signup" method="post" action="/store">
             <div class="col-5">
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Store Name">
+                    <input type="text" class="form-control" id="storename" placeholder="Store Name">
             </div>
             <div class="col-5">    
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address">
+                    <input type="text" class="form-control" id="address" placeholder="Address">
             </div>
             <div class="col-5">
-                    <input type="password" class="form-control " id="exampleInputPassword1" placeholder="Phone Number">
+                    <input type="text" class="form-control " id="phonenumber" placeholder="Phone Number">
             </div>
             <div class="col-5">
-                    <input type="password" class="form-control " id="exampleInputPassword1" placeholder="Prize Code">
+                    <input type="text" class="form-control " id="prizecode" placeholder="Prize Code">
             </div>
             <button type="submit" class="btn btn-primary col-1">Submit</button>
         </form>

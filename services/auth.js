@@ -1,9 +1,9 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const User = require('../models/adminuser')
+const Admin = require('../models/adminuser')
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
+passport.serializeUser((admin, done) => {
+  done(null, admin.id)
 })
 
 passport.deserializeUser((id, done) => {
@@ -22,7 +22,7 @@ passport.use('local-signup', new LocalStrategy({
     if (err) return done(err)
     if (admin) return done(null, false)
 
-  Admin.create(req.body, (err, newadmin) => {
+    Admin.create(req.body, (err, newadmin) => {
       if (err) return console.log(err)
       return done(null, newadmin, null)
     })

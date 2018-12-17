@@ -8,7 +8,7 @@ const adminSchema = new mongoose.Schema({
 })
 
 adminSchema.pre('save', function (next) {
-  const user = this
+  const admin = this
   if (!admin.isModified('password')) return next()
   bcrypt.genSalt(8, (err, salt) => {
     if (err) return next(err)
@@ -24,5 +24,5 @@ adminSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password)
 }
 
-const Admin = mongoose.model('User', adminSchema)
+const Admin = mongoose.model('Admin', adminSchema)
 module.exports = Admin
