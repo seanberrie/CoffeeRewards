@@ -28,5 +28,18 @@
     </div>
     <div class="col-6 justify-content-end">
         <h3>Cafes</h3>
+        <div class="storelist">
+                <% var storeList = './store' %>
+                <% axios.get(storeList) %>
+                    <% .then(res => { %>
+                        <% console.log(res.data) %>
+                        <!-- <% var stores = res.data.features %>
+                        <% stores.forEach(i => { %>
+                            <%  let title = document.createElement('p') %>
+                            <% titlesrc = i.properties.title %>
+                            <% earthLoc.appendChild(title) %>
+                            <% title.innerHTML = titlesrc %> -->
+                            hihi
+        </div>
     </div>
 </div>
