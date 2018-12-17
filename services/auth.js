@@ -1,43 +1,43 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-// const User = require('../models/User')
+const User = require('../models/adminuser')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user)
+  Admin.findById(id, (err, admin) => {
+    done(err, admin)
   })
 })
 
 /// local signup action
 passport.use('local-signup', new LocalStrategy({
-  usernameField: 'email',
+  adminnameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {
-  User.findOne({ email }, (err, user) => {
+  Admin.findOne({ email }, (err, admin) => {
     if (err) return done(err)
-    if (user) return done(null, false)
+    if (admin) return done(null, false)
 
-    User.create(req.body, (err, newUser) => {
+  Admin.create(req.body, (err, newadmin) => {
       if (err) return console.log(err)
-      return done(null, newUser, null)
+      return done(null, newadmin, null)
     })
   })
 }))
 /// local login action
 passport.use('local-login', new LocalStrategy({
-  usernameField: 'email',
+  adminnameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {
-  User.findOne({ email }, (err, user) => {
+  Admin.findOne({ email }, (err, admin) => {
     if (err) return done(err)
-    if (!user || !user.validPassword(password)) return done(null, false)
-    return done(null, user)
+    if (!admin || !admin.validPassword(password)) return done(null, false)
+    return done(null, admin)
   })
 }))
 
