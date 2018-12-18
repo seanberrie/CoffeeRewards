@@ -4,7 +4,7 @@ module.exports = {
   index: (req, res) => {
     Store.find({}, (err, stores) => {
       if (err) res.json({ success: false, err })
-      res.json({ success: true, stores })
+      res.render('adminDB', { success: true, stores })
     })
   },
 

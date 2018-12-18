@@ -14,7 +14,7 @@ passport.deserializeUser((id, done) => {
 
 /// local signup action
 passport.use('local-signup', new LocalStrategy({
-  adminnameField: 'email',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {
@@ -30,7 +30,7 @@ passport.use('local-signup', new LocalStrategy({
 }))
 /// local login action
 passport.use('local-login', new LocalStrategy({
-  adminnameField: 'email',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {

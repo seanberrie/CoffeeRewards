@@ -9,7 +9,7 @@ const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const passport = require('passport')
 const passportConfig = require('./services/auth')
-const adminRouter = require('./routes/admin.js')
+const adminRouter = require('./routers/admin.js')
 const storeRouter = require('./routers/storeRouter')
 const methodOverride = require('method-override')
 const path = require('path')
@@ -56,8 +56,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) => {
-  app.locals.currentAdmin = req.admin
-  app.locals.loggedIn = !!req.admin
+  app.locals.currentAdmin = req.admins
+  app.locals.loggedIn = !!req.admins
   next()
 })
 
@@ -65,8 +65,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('index')
 })
-
-app.use('/', adminRouter)
+app.use('/admin', adminRouter)
 app.use('/store', storeRouter)
 
 app.listen(port, (err) => {

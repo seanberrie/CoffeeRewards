@@ -14,3 +14,9 @@ h3 {
 .emblem {
     height: 300px;
 }
+.storetop {
+    margin-top: .5em;
+}
+p {
+    margin:0;
+}

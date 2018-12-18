@@ -1,8 +1,9 @@
 const express = require('express')
 const adminRouter = new express.Router()
 const passport = require('passport')
+const Store = require('../controllers/store')
 
-adminRouter.get('/admin', (req, res) => {
+adminRouter.get('/', (req, res) => {
   res.render('admin')
 })
 
@@ -10,22 +11,26 @@ adminRouter.get('/adminsignup', (req, res) => {
   res.render('adminsignup')
 })
 
-adminRouter.get('/adminDB', (req, res) => {
-  res.render('adminDB')
-})
+// adminRouter.get('/adminDB', (req, res) => {
+//   res.render('adminDB')
+// })
 
-adminRouter.post('/admin', passport.authenticate('local-login', {
-  successRedirect: '/admindb',
+adminRouter.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/admin/admindb',
   failureRedirect: '/admin'
 }))
 
-adminRouter.post('/adminsignup', passport.authenticate('local-signup', {
-  successRedirect: '/admindb',
-  failureRedirect: '/adminsignup'
+adminRouter.post('/', passport.authenticate('local-signup', {
+  successRedirect: '/admin/admindb',
+  failureRedirect: '/admin/adminsignup'
 }))
 
+adminRouter.get('/adminDB', Store.index)
+
+// adminRouter.post('/adminDB', Store.create)
+
 adminRouter.get('/admindb', isLoggedIn, ({ admin }, res) => {
-  /// render the admin profile (only when user is logged in)
+  // / render the admin profile (only when user is logged in)
   res.render('admindb', { admin })
 })
 /// ///
@@ -47,7 +52,7 @@ adminRouter.get('/admindb', isLoggedIn, ({ admin }, res) => {
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) return next()
-  res.redirect('/admindb')
+  res.redirect('/admin')
 }
 
 module.exports = adminRouter

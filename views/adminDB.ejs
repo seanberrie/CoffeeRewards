@@ -12,34 +12,32 @@
     <div class="col-6 justify-content-start">
         <form class="d-flex flex-column align-items-center justify-content-center signup" method="post" action="/store">
             <div class="col-5">
-                    <input type="text" class="form-control" id="storename" placeholder="Store Name">
+                    <input type="text" class="form-control" name="storename" placeholder="Store Name">
             </div>
             <div class="col-5">    
-                    <input type="text" class="form-control" id="address" placeholder="Address">
+                    <input type="text" class="form-control" name="address" placeholder="Address">
             </div>
             <div class="col-5">
-                    <input type="text" class="form-control " id="phonenumber" placeholder="Phone Number">
+                    <input type="text" class="form-control " name="phonenumber" placeholder="Phone Number">
             </div>
             <div class="col-5">
-                    <input type="text" class="form-control " id="prizecode" placeholder="Prize Code">
+                    <input type="text" class="form-control " name="prizecode" placeholder="Prize Code">
             </div>
-            <button type="submit" class="btn btn-primary col-1">Submit</button>
+            <button type="submit" class="btn btn-primary col-3">Submit</button>
         </form>
     </div>
     <div class="col-6 justify-content-end">
         <h3>Cafes</h3>
         <div class="storelist">
-                <% var storeList = './store' %>
-                <% axios.get(storeList) %>
-                    <% .then(res => { %>
-                        <% console.log(res.data) %>
-                        <!-- <% var stores = res.data.features %>
-                        <% stores.forEach(i => { %>
-                            <%  let title = document.createElement('p') %>
-                            <% titlesrc = i.properties.title %>
-                            <% earthLoc.appendChild(title) %>
-                            <% title.innerHTML = titlesrc %> -->
-                            hihi
+            <% if (success) { %>
+                <% stores.forEach(s => { %>
+                    <p class="storetop"><%= s.storename %></p>
+                    <p><%= s.address %></p>
+                    <p><%= s.phonenumber %></p>
+                    <p class="storebottom"><%= s.prizecode %></p>
+                <% }) %>
+            <% } %>
+
         </div>
     </div>
 </div>
