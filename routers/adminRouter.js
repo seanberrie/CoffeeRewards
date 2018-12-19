@@ -12,7 +12,7 @@ adminRouter.get('/asignup', (req, res) => {
 })
 
 adminRouter.get('/store/:id/edit', (req, res) => {
-  res.render('store/edit')
+  res.render('edit')
 })
 
 adminRouter.post('/login', passport.authenticate('local-login', {
@@ -25,11 +25,9 @@ adminRouter.post('/', passport.authenticate('local-signup', {
   failureRedirect: '/admin/asignup'
 }))
 
-adminRouter.get('/Coffeerewardeditor', Store.index)
-
-adminRouter.get('/Coffeerewardeditor', isLoggedIn, ({ admin }, res) => {
+adminRouter.get('/Coffeerewardeditor', isLoggedIn, Store.index, (req, res) => {
   // / render the admin profile (only when user is logged in)
-  res.render('Coffeerewardeditor', { admin })
+  res.render('Coffeerewardeditor')
 })
 /// ///
 // usersRouter.patch('/profile', isLoggedIn, (req, res) => {
@@ -42,11 +40,11 @@ adminRouter.get('/Coffeerewardeditor', isLoggedIn, ({ admin }, res) => {
 // })
 /// ///
 
-// adminRouter.get('/logout', (req, res) => {
-//   req.logout()
-//   res.redirect('/')
-// /// destroy the session,and redirect the user back to the home page.
-// })
+adminRouter.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+/// destroy the session,and redirect the user back to the home page.
+})
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) return next()

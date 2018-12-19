@@ -33,7 +33,7 @@ module.exports = {
   edit: (req, res) => {
     Store.findById(req.params.id, (err, store) => {
       if (err) res.json({ success: false, err })
-      res.render('store/edit', store)
+      res.render('edit', store)
     })
   },
 

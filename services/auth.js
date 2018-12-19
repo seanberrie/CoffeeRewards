@@ -13,7 +13,7 @@ passport.deserializeUser((id, done) => {
 })
 
 /// local signup action
-passport.use('local-signup', new LocalStrategy({
+passport.use('local-admin-signup', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
@@ -21,20 +21,19 @@ passport.use('local-signup', new LocalStrategy({
   User.findOne({ email }, (err, user) => {
     if (err) return done(err)
     if (user) return done(null, false)
-    // if (req.body.code === "ABCDE") {
-    // delete req.body.code
-    // let newUser = new User({...req.body, user:: true})
-    // newUser.save(err => {
-    // if (err) res.json({  })
-    // If success...
-    // })
-    // };
-    User.create(req.body, (err, newuser) => {
-      if (err) return console.log(err)
-      return done(null, newuser, null)
-    })
+    if (req.body.code === process.env.ADMIN_CODE) {
+      delete req.body.code
+      User.create({ ...req.body, admin: true }, (err, newuser) => {
+        if (err) return console.log(err)
+        return done(null, newuser, null)
+      })
+    } else {
+      if (err) return done({ message: "Code doesn't match." })
+    }
   })
 }))
+
+// passport.use('local-signup')
 /// local login action
 passport.use('local-login', new LocalStrategy({
   usernameField: 'email',
