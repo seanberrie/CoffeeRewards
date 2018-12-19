@@ -1,6 +1,7 @@
 const Store = require('../models/store')
 
 module.exports = {
+  // ADMIN & USER
   index: (req, res) => {
     Store.find({}, (err, stores) => {
       if (err) res.json({ success: false, err })
@@ -8,29 +9,41 @@ module.exports = {
     })
   },
 
+  // ADMIN ONLY
   create: (req, res) => {
     Store.create(req.body, (err, newStore) => {
       if (err) res.json({ success: false, err })
-      res.json({ success: true, newStore })
+      res.redirect('/admin/adminDB')
+    })
+  },
+  // USER ONLY
+  //   show: (req, res) => {
+  //     Store.findById(req.params.id, (err, Store) => {
+  //       if (err) res.json({ success: false, err })
+  //       res.json({ success: true, Store })
+  //     })
+  //   },
+
+  edit: (req, res) => {
+    Store.findById(req.params.id, (err, store) => {
+      if (err) res.json({ success: false, err })
+      res.render('store/edit', store)
     })
   },
 
-  show: (req, res) => {
-    Store.findById(req.params.id, (err, Store) => {
-      if (err) res.json({ success: false, err })
-      res.json({ success: true, Store })
-    })
-  },
+  // ADMIN ONLY
   update: (req, res) => {
-    let { body, params } = req
-    Store.findByIdAndUpdate(params.id, body, { new: true }, (err, updateStore) => {
+    console.log('hit')
+    Store.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateStore) => {
       if (err) res.json({ success: false, err })
-      res.json({ success: true, updateStore })
+      res.redirect('/admin/adminDB')
     })
   },
+  // ADmin
   destroy: (req, res) => {
-    Store.findByIdAndDelete(req.params.id, (err, deleteStore) => {
+    Store.findByIdAndRemove(req.params.id, (err, deletestore) => {
       if (err) res.json({ success: false, err })
-      res.json({ success: true, deleteStore })
+      res.redirect('/admin/adminDB')
     })
-  } }
+  }
+}

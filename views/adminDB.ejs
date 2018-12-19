@@ -35,6 +35,14 @@
                     <p><%= s.address %></p>
                     <p><%= s.phonenumber %></p>
                     <p class="storebottom"><%= s.prizecode %></p>
+                    <div class="flex-row d-flex justify-content-start">
+                    <form method="post" action="/store/<%= s.id %>?_method=DELETE">
+                    <input type="submit" name="_method" value="DELETE">
+                    </form>
+                    <form action="/store/<%= s.id %>/edit">
+                        <input type="submit" value="Edit" />
+                    </form>
+                    </div>
                 <% }) %>
             <% } %>
 

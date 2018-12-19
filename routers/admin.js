@@ -11,9 +11,9 @@ adminRouter.get('/adminsignup', (req, res) => {
   res.render('adminsignup')
 })
 
-// adminRouter.get('/adminDB', (req, res) => {
-//   res.render('adminDB')
-// })
+adminRouter.get('/store/:id/edit', (req, res) => {
+  res.render('store/edit')
+})
 
 adminRouter.post('/login', passport.authenticate('local-login', {
   successRedirect: '/admin/admindb',
@@ -26,8 +26,6 @@ adminRouter.post('/', passport.authenticate('local-signup', {
 }))
 
 adminRouter.get('/adminDB', Store.index)
-
-// adminRouter.post('/adminDB', Store.create)
 
 adminRouter.get('/admindb', isLoggedIn, ({ admin }, res) => {
   // / render the admin profile (only when user is logged in)
