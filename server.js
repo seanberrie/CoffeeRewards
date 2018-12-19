@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
@@ -9,24 +11,21 @@ const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const passport = require('passport')
 const passportConfig = require('./services/auth')
-const adminRouter = require('./routers/admin.js')
+const adminRouter = require('./routers/adminRouter.js')
 const storeRouter = require('./routers/storeRouter')
+const userRouter = require('./routers/userRouter')
 const methodOverride = require('method-override')
 const path = require('path')
 const bodyParser = require('body-parser')
 
 // environment port
 const port = process.env.PORT || 3000
-const mongoConnectionString = process.env.MONGODB_URI || 'mongodb://sberrie:sberrie1@ds011923.mlab.com:11923/intelligentsia'
 
-// mongoose connection
-mongoose.connect(mongoConnectionString, (err) => {
-  console.log(err || 'Connected to MongoDB')
-})
+require('./DB')
 
 // will store session information as a 'sessions' collection in Mongo
 const store = new MongoDBStore({
-  uri: mongoConnectionString,
+  uri: process.env.MONGODB_URI,
   collection: 'sessions'
 })
 
@@ -56,8 +55,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) => {
-  app.locals.currentAdmin = req.admins
-  app.locals.loggedIn = !!req.admins
+  app.locals.currentUser = req.user
+  app.locals.loggedIn = !!req.user
   next()
 })
 
@@ -67,6 +66,7 @@ app.get('/', (req, res) => {
 })
 app.use('/admin', adminRouter)
 app.use('/store', storeRouter)
+app.use('/', userRouter)
 
 app.listen(port, (err) => {
   console.log(err || 'Server running on port ' + port)

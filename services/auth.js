@@ -1,14 +1,14 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const Admin = require('../models/adminuser')
+const User = require('../models/user')
 
-passport.serializeUser((admin, done) => {
-  done(null, admin.id)
+passport.serializeUser((user, done) => {
+  done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
-  Admin.findById(id, (err, admin) => {
-    done(err, admin)
+  User.findById(id, (err, user) => {
+    done(err, user)
   })
 })
 
@@ -18,13 +18,20 @@ passport.use('local-signup', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {
-  Admin.findOne({ email }, (err, admin) => {
+  User.findOne({ email }, (err, user) => {
     if (err) return done(err)
-    if (admin) return done(null, false)
-
-    Admin.create(req.body, (err, newadmin) => {
+    if (user) return done(null, false)
+    // if (req.body.code === "ABCDE") {
+    // delete req.body.code
+    // let newUser = new User({...req.body, user:: true})
+    // newUser.save(err => {
+    // if (err) res.json({  })
+    // If success...
+    // })
+    // };
+    User.create(req.body, (err, newuser) => {
       if (err) return console.log(err)
-      return done(null, newadmin, null)
+      return done(null, newuser, null)
     })
   })
 }))
@@ -34,10 +41,10 @@ passport.use('local-login', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 }, (req, email, password, done) => {
-  Admin.findOne({ email }, (err, admin) => {
+  User.findOne({ email }, (err, user) => {
     if (err) return done(err)
-    if (!admin || !admin.validPassword(password)) return done(null, false)
-    return done(null, admin)
+    if (!user || !user.validPassword(password)) return done(null, false)
+    return done(null, user)
   })
 }))
 

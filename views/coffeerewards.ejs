@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <ul class="navbar-nav">
+            <li class="navbar-brand" href="/">Intelligentsia
+                <img src="https://i.imgur.com/KJY9UHF.png" height="35" width="auto">
+            </li>
+        </ul>
+    </nav>
+    <div class="d-flex align-items-center justify-content-center emblem">
+        <img src="https://i.imgur.com/3biQhjK.png">
+    </div>
+    <div class="flex-row d-flex justify-content-between">
+        <div class="col-6 justify-content-start">
+        </div>
+        <div class="col-6 justify-content-end">
+            <h3>Cafes</h3>
+            <div class="storelist">
+                <% if (success) { %>
+                    <% stores.forEach(s => { %>
+                        <p class="storetop"><%= s.storename %></p>
+                        <p><%= s.address %></p>
+                        <p><%= s.phonenumber %></p>
+                    <% }) %>
+                <% } %>
+    
+            </div>
+        </div>
+    </div>

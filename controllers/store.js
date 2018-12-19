@@ -5,7 +5,13 @@ module.exports = {
   index: (req, res) => {
     Store.find({}, (err, stores) => {
       if (err) res.json({ success: false, err })
-      res.render('adminDB', { success: true, stores })
+      res.render('Coffeerewardeditor', { success: true, stores })
+    })
+  },
+  index2: (req, res) => {
+    Store.find({}, (err, stores) => {
+      if (err) res.json({ success: false, err })
+      res.render('coffeerewards', { success: true, stores })
     })
   },
 
@@ -13,7 +19,7 @@ module.exports = {
   create: (req, res) => {
     Store.create(req.body, (err, newStore) => {
       if (err) res.json({ success: false, err })
-      res.redirect('/admin/adminDB')
+      res.redirect('/admin/Coffeerewardeditor')
     })
   },
   // USER ONLY
@@ -33,17 +39,16 @@ module.exports = {
 
   // ADMIN ONLY
   update: (req, res) => {
-    console.log('hit')
     Store.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateStore) => {
       if (err) res.json({ success: false, err })
-      res.redirect('/admin/adminDB')
+      res.redirect('/admin/Coffeerewardeditor')
     })
   },
   // ADmin
   destroy: (req, res) => {
     Store.findByIdAndRemove(req.params.id, (err, deletestore) => {
       if (err) res.json({ success: false, err })
-      res.redirect('/admin/adminDB')
+      res.redirect('/admin/Coffeerewardeditor')
     })
   }
 }
