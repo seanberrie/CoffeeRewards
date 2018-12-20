@@ -16,15 +16,24 @@
         </div>
         <div class="col-6 justify-content-end">
             <h3>Cafes</h3>
-            <div class="storelist">
-                <% if (success) { %>
-                    <% stores.forEach(s => { %>
-                        <p class="storetop"><%= s.storename %></p>
-                        <p><%= s.address %></p>
-                        <p><%= s.phonenumber %></p>
-                    <% }) %>
-                <% } %>
-    
+            <div class="card example-1 scrollbar">
+                <div class="card-body storelist d-flex flex-column align-items-center">
+                    <% if (success) { %>
+                        <% stores.forEach(s => { %>
+                            <p class="storetop"><%= s.storename %></p>
+                            <p><%= s.address %></p>
+                            <p><%= s.phonenumber %></p>
+                            <form class="col-3" method="post" action="#">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="prizecode" placeholder="code">
+                                </div>
+                                <div class="col-8">
+                                    <input type="submit" value="submit" />
+                                </div>
+                            </form>
+                        <% }) %>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>

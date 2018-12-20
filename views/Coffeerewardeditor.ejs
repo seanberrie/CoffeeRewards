@@ -13,6 +13,7 @@
 </div>
 <div class="flex-row d-flex justify-content-between">
     <div class="col-6 justify-content-start">
+        <h3>Cafe Input</h3>
         <form class="d-flex flex-column align-items-center justify-content-center signup" method="post" action="/store">
             <div class="col-5">
                     <input type="text" class="form-control" name="storename" placeholder="Store Name">
@@ -31,24 +32,27 @@
     </div>
     <div class="col-6 justify-content-end">
         <h3>Cafes</h3>
-        <div class="storelist">
-            <% if (success) { %>
-                <% stores.forEach(s => { %>
-                    <p class="storetop"><%= s.storename %></p>
-                    <p><%= s.address %></p>
-                    <p><%= s.phonenumber %></p>
-                    <p class="storebottom"><%= s.prizecode %></p>
-                    <div class="flex-row d-flex justify-content-start">
-                    <form method="post" action="/store/<%= s.id %>?_method=DELETE">
-                    <input type="submit" name="_method" value="DELETE">
-                    </form>
-                    <form action="/store/<%= s.id %>/edit">
-                        <input type="submit" value="Edit" />
-                    </form>
-                    </div>
-                <% }) %>
-            <% } %>
-
+        <div class="card example-1 scrollbar">
+            <div class="card-body storelist d-flex flex-column align-items-center">
+                <div class="storelist">
+                    <% if (success) { %>
+                        <% stores.forEach(s => { %>
+                            <p class="storetop"><%= s.storename %></p>
+                            <p><%= s.address %></p>
+                            <p><%= s.phonenumber %></p>
+                            <p class="storebottom"><%= s.prizecode %></p>
+                            <div class="flex-row d-flex justify-content-start">
+                            <form method="post" action="/store/<%= s.id %>?_method=DELETE">
+                            <input type="submit" name="_method" value="DELETE">
+                            </form>
+                            <form action="/store/<%= s.id %>/edit">
+                                <input type="submit" value="Edit" />
+                            </form>
+                            </div>
+                        <% }) %>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </div>

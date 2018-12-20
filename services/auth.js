@@ -50,6 +50,18 @@ passport.use('local-signup', new LocalStrategy({
   })
 }))
 
+passport.use('local-admin-login', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, (req, email, password, done) => {
+  User.findOne({ email }, (err, user) => {
+    if (err) return done(err)
+    if (!user || !user.validPassword(password) || user.admin !== true) return done(null, false)
+    return done(null, user)
+  })
+}))
+
 passport.use('local-login', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',

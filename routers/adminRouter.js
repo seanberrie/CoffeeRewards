@@ -11,11 +11,7 @@ adminRouter.get('/asignup', (req, res) => {
   res.render('asignup')
 })
 
-adminRouter.get('/store/:id/edit', isLoggedIn, (req, res) => {
-  res.render('edit')
-})
-
-adminRouter.post('/login', passport.authenticate('local-login', {
+adminRouter.post('/login', passport.authenticate('local-admin-login', {
   successRedirect: '/admin/Coffeerewardeditor',
   failureRedirect: '/admin'
 }))
@@ -28,6 +24,10 @@ adminRouter.post('/', passport.authenticate('local-admin-signup', {
 adminRouter.get('/Coffeerewardeditor', isLoggedIn, Store.index, (req, res) => {
   // / render the admin profile (only when user is logged in)
   res.render('Coffeerewardeditor')
+})
+
+adminRouter.get('/store/:id/edit', isLoggedIn, (req, res) => {
+  res.render('edit')
 })
 /// ///
 // usersRouter.patch('/profile', isLoggedIn, (req, res) => {

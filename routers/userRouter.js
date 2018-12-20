@@ -7,10 +7,6 @@ userRouter.get('/signup', (req, res) => {
   res.render('signup')
 })
 
-userRouter.get('/coffeerewards', Store.index2, isLoggedIn, (req, res) => {
-  res.render('coffeerewards')
-})
-
 userRouter.post('/login', passport.authenticate('local-login', {
   successRedirect: '/Coffeerewards',
   failureRedirect: '/'
@@ -21,6 +17,10 @@ userRouter.post('/', passport.authenticate('local-signup', {
   failureRedirect: '/'
 }))
 
+userRouter.get('/coffeerewards', Store.index2, isLoggedIn, (req, res) => {
+  res.render('coffeerewards')
+})
+
 userRouter.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
@@ -29,6 +29,6 @@ userRouter.get('/logout', (req, res) => {
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) return next()
-  res.redirect('/')
+  res.redirect('/coffeerewards')
 }
 module.exports = userRouter
