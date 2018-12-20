@@ -1,4 +1,5 @@
 const Store = require('../models/store')
+const User = require('../models/user')
 
 module.exports = {
   // ADMIN & USER
@@ -23,18 +24,20 @@ module.exports = {
       res.redirect('/admin/Coffeerewardeditor')
     })
   },
-  // USER ONLY
-  //   show: (req, res) => {
-  //     Store.findById(req.params.id, (err, Store) => {
-  //       if (err) res.json({ success: false, err })
-  //       res.json({ success: true, Store })
-  //     })
-  //   },
 
   edit: (req, res) => {
     Store.findById(req.params.id, (err, store) => {
       if (err) res.json({ success: false, err })
       res.render('edit', store)
+    })
+  },
+
+  rewards: (req, res) => {
+    Store.findById(req.params.id, (err, user) => {
+      if (err) res.json({ success: false, err })
+      if (req.params.id == User.type.Schema.user.points)
+
+        res.redirect('/coffeerewards')
     })
   },
 

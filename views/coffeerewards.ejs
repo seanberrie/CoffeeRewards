@@ -24,9 +24,9 @@
                             <p class="storetop"><%= s.storename %></p>
                             <p><%= s.address %></p>
                             <p><%= s.phonenumber %></p>
-                            <form class="col-3" method="POST" action="/coffeerewards?_method=PUT">
+                            <form class="col-3" method="POST" action="/stores/<%= s.id %>/rewards">
                                 <div class="col">
-                                    <input type="text" class="form-control" id="form" name="points" placeholder="code">
+                                    <input type="text" class="form-control" id="form" name="code" placeholder="code">
                                 </div>
                                 <div class="col-8">
                                     <input type="submit" value="submit" />

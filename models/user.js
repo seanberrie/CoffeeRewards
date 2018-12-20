@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   admin: Boolean,
-  points: Number
+  points: [{ ref: 'store', type: mongoose.Schema.Types.ObjectId }]
 })
 
 userSchema.pre('save', function (next) {
