@@ -8,6 +8,7 @@ module.exports = {
       res.render('Coffeerewardeditor', { success: true, stores })
     })
   },
+
   index2: (req, res) => {
     Store.find({}, (err, stores) => {
       if (err) res.json({ success: false, err })

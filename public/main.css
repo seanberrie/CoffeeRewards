@@ -1,15 +1,51 @@
+/* font-family: 'Nunito', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+
 body {
     background-color: red;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.imgur.com/xX3eZxe.jpg");
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.navbar-brand{
+    font-family: 'Nunito', sans-serif;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+.btn {
+    background-color: red;
+    border-color: red;
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    font-weight: 200;
+}
+.btn:hover {
+    background-color: slategray;
+    border-color: black
+}
+.navbar {
+    font-family: 'Nunito', sans-serif;
+    font-size: .75em;
+    text-transform: uppercase;
 }
 .col-5 {
     margin: .5em 0;
 }
 h1 {
+    font-family: 'Nunito', sans-serif;
     text-align: center;
-    text-decoration: underline;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 200;
 }
 h3 {
+    font-family: 'Nunito', sans-serif;
     text-align: center;
+    color: white;
+    text-transform: capitalize
 }
 .emblem {
     height: 300px;

@@ -2,6 +2,8 @@ const express = require('express')
 const userRouter = new express.Router()
 const passport = require('passport')
 const Store = require('../controllers/store')
+const User = require('../models/user')
+const Rewards = require('../models/store')
 
 userRouter.get('/signup', (req, res) => {
   res.render('signup')
@@ -17,8 +19,17 @@ userRouter.post('/', passport.authenticate('local-signup', {
   failureRedirect: '/'
 }))
 
-userRouter.get('/coffeerewards', Store.index2, isLoggedIn, (req, res) => {
-  res.render('coffeerewards')
+userRouter.get('/coffeerewards', isLoggedIn, Store.index2)
+
+userRouter.put('/coffeerewards', isLoggedIn, (req, res) => {
+  let id = req.user._id
+  console.log(req.body)
+  User.findOne(id, (err, user) => {
+    if (err) return console.log(err)
+    if (req.body === Rewards) {
+      user.points += 1
+    }
+  })
 })
 
 userRouter.get('/logout', (req, res) => {
@@ -29,6 +40,6 @@ userRouter.get('/logout', (req, res) => {
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) return next()
-  res.redirect('/coffeerewards')
+  res.redirect('/')
 }
 module.exports = userRouter
