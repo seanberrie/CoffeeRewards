@@ -46,6 +46,9 @@ download files - connect server - go to browser - connect to localhost 3000
 ![rewards screenshot](https://i.imgur.com/ed9jxG6.png)
 ### ERD
 ![ERD](https://i.imgur.com/vr5sHmE.png)
+### User Stories and Trello Board
+![user stories screenshot](https://i.imgur.com/MFRYG85.png)
+![trello board screenshot](https://i.imgur.com/OnhJSo4.png)
 
 
 ### Features
