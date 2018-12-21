@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <ul class="navbar-nav">
-        <li class="navbar-brand" href="/">Intelligentsia
-            <img src="https://i.imgur.com/ob1bn4c.png" height="20" width="auto">
+        <li class="navbar-brand"><a class="navbar-brand" href="/">Intelligentsia</a>
+            <img class="logo" src="https://i.imgur.com/ob1bn4c.png" height="20" width="auto">
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/admin/logout">Logout<span class="sr-only">(current)</span></a>
@@ -27,7 +27,7 @@
             <div class="col-5">
                     <input type="text" class="form-control " name="prizecode" placeholder="Prize Code">
             </div>
-            <button type="submit" class="btn btn-primary col-3">Submit</button>
+            <button type="submit" class="btn btn-danger col-3">Submit</button>
         </form>
     </div>
     <div class="col-6 justify-content-end">
@@ -43,10 +43,10 @@
                             <p class="storebottom"><%= s.prizecode %></p>
                             <div class="flex-row d-flex justify-content-start">
                             <form method="post" action="/store/<%= s.id %>?_method=DELETE">
-                            <input type="submit" name="_method" value="DELETE">
+                            <input class="btn btn-danger" type="submit" name="_method" value="DELETE">
                             </form>
                             <form action="/store/<%= s.id %>/edit">
-                                <input type="submit" value="Edit" />
+                                <input class="btn btn-danger" type="submit" value="Edit" />
                             </form>
                             </div>
                         <% }) %>

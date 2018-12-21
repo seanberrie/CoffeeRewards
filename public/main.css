@@ -10,6 +10,9 @@ body {
     background-size: cover;
     
 }
+.logo {
+    margin: 0 1em;
+}
 .navbar-brand{
     font-family: 'Nunito', sans-serif;
     font-size: 1em;
@@ -21,10 +24,20 @@ body {
     font-family: 'Nunito', sans-serif;
     text-transform: uppercase;
     font-weight: 200;
+    color: white;
+    margin: 0 5px;
+    transition: none;
 }
 .btn:hover {
     background-color: slategray;
-    border-color: black
+    border-color: black;
+    transition: none;
+}
+.btn:active {
+    background-color: red;
+    border-color: red;
+    transition: none;
+    
 }
 .navbar {
     font-family: 'Nunito', sans-serif;
@@ -51,7 +64,7 @@ h3 {
     height: 300px;
 }
 .storetop {
-    margin-top: .5em;
+    margin-top: 1em;
 }
 p {
     margin:0;
@@ -59,4 +72,33 @@ p {
 .example-1 {
     position: relative;
     overflow-y: scroll;
-    height: 300px; }
+    height: 300px; 
+}
+.card {
+   background-color: rgba(0,0,0,0.2)  
+}
+p {
+    font-family: 'Nunito', sans-serif;
+    color: white;
+}
+input {
+    -webkit-transition-property: background-color white !important;
+}
+input[type=email]:focus {
+    border: 1px solid #555;
+}
+input[type=password]:focus {
+    border: 1px solid #555;
+}
+input[type=text]:focus {
+    border: 1px solid #555;
+}
+input[type=admin]:focus {
+    border: 1px solid #555;
+}
+.nav-link{
+    margin-top: 2px;
+}
+.admin{
+    text-align: right;
+}

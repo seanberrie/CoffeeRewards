@@ -32,14 +32,14 @@ module.exports = {
     })
   },
 
-  rewards: (req, res) => {
-    Store.findById(req.params.id, (err, user) => {
-      if (err) res.json({ success: false, err })
-      if (req.params.id == User.type.Schema.user.points)
+  // rewards: (req, res) => {
+  //   Store.findById(req.params.id, (err, user) => {
+  //     if (err) res.json({ success: false, err })
+  //     if (req.params.id == User.type.Schema.user.points)
 
-        res.redirect('/coffeerewards')
-    })
-  },
+  //       res.redirect('/coffeerewards')
+  //   })
+  // },
 
   // ADMIN ONLY
   update: (req, res) => {
